@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_surface"
+        android:elevation="8dp"
+        android:padding="18dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/user_3"
+            app:civ_border_color="@color/secondary"
+            app:civ_border_overlay="true"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/surfaceVariant" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/profile_image"
+            android:layout_toEndOf="@id/profile_image"
+            android:text="Jennifer Addams"
+            android:textColor="@color/seed"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_name"
+            android:layout_marginBottom="6dp"
+            android:layout_toEndOf="@id/profile_image"
+            android:text="San Fransisco, within 1.5Km"
+            android:textColor="@color/onSurfaceVariant"
+            android:textSize="13sp" />
+
+        <ProgressBar
+            android:id="@+id/profile_distance"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="9dp"
+            android:layout_below="@+id/profile_location"
+            android:layout_alignEnd="@id/profile_location"
+            android:layout_toEndOf="@id/profile_image"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/bg_progress" />
+
+        <TextView
+            android:id="@+id/profile_purpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_image"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="6dp"
+            android:lines="1"
+            android:text="Friendship, Coffee, Hangout"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_purpose"
+            android:layout_alignEnd="@+id/profile_name"
+            android:layout_alignParentStart="true"
+            android:maxLines="2"
+            android:text="Hi Community!\nI'm open to new connections."
+            android:textColor="@color/onSurface"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/profile_invite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/profile_message"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_surface_variant"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="PENDING"
+            android:textColor="@color/onSurfaceVariant"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</LinearLayout>

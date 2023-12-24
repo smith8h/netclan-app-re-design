@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ScreenRefine">
+
+<!--    re-designing toolbar for better color contrast -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/drawer_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/onBackground" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Refine"
+            android:textColor="@color/onBackground"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/location"
+            app:layout_constraintStart_toEndOf="@+id/menu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/location"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="3dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/menu"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_title"
+            app:tint="@color/primary" />
+
+        <TextView
+            android:id="@+id/loc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Baghdad, Iraq"
+            android:textColor="@color/primary"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/location"
+            app:layout_constraintStart_toEndOf="@+id/location"
+            app:layout_constraintTop_toTopOf="@id/location" />
+
+        <ImageView
+            android:id="@+id/notifications"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/bell"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+<!--    re-create a layout container for status
+        by aligning them in the same line horizontally
+        and make status text lighter to better contrast
+        and focusing on spinner and the title -->
+        <LinearLayout
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status:"
+                android:textColor="@color/onBackground"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:lines="1"
+                android:text="SOS-Emergency! Need Assistance! Help"
+                android:textColor="@color/onSurfaceVariant"
+                android:textSize="16sp"
+                android:alpha=".7"/>
+
+            <ImageView
+                android:id="@+id/status_img"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/spinner"
+                android:scaleType="centerInside"
+                app:tint="@color/primary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/broadcast_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/status"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp"
+            android:text="Broadcast Brief Message:"
+            android:textColor="@color/onBackground"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!--    change edittext background from white with border to filled color
+         to maintain the theme and make it obvious to the user as input field -->
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/broadcast_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_surface_variant"
+            android:importantForAutofill="no"
+            android:hint="Broadcast Message"
+            android:maxLength="250"
+            android:maxLines="3"
+            android:padding="12dp"
+            android:text="Hi Community! I met with an accident and need immediate help."
+            android:textColor="@color/onSurfaceVariant"
+            android:textSize="17sp"
+            tools:ignore="LabelFor,TextFields" />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/message"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginBottom="24dp"
+            android:alpha=".9"
+            android:textColor="@color/secondary"
+            android:textSize="13sp"
+            android:text="74/250" />
+
+        <TextView
+            android:id="@+id/distance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/count"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="36dp"
+            android:text="Nearby Distance"
+            android:textColor="@color/onBackground"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!--    re-designing seekbar to Slider provided from material library
+            for better user interface and experience
+            it will change it's height when being touched -->
+        <com.google.android.material.slider.Slider
+            android:id="@+id/distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distance_title"
+            android:layout_alignParentStart="true"
+            android:stepSize="1"
+            android:value="1"
+            android:valueFrom="1"
+            android:valueTo="100"
+            app:labelBehavior="floating"
+            app:trackHeight="12dp" />
+
+        <TextView
+            android:id="@+id/distance_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distance"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp"
+            android:alpha=".9"
+            android:text="1Km"
+            android:textColor="@color/secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distance"
+            android:layout_alignParentEnd="true"
+            android:alpha=".9"
+            android:text="100Km"
+            android:textColor="@color/secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/purpose_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/distance_start"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp"
+            android:text="Purpose"
+            android:textColor="@color/onBackground"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- re-designing purpose toggle buttons
+            the main idea of the icons ligned beside titles is to
+            provide better visualization to the user for fastly reaching
+            what he want to choose ! -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/purpose_title">
+
+            <LinearLayout
+                android:id="@+id/coffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_surface_variant"
+                android:layout_alignParentStart="true"
+                android:layout_margin="4dp"
+                android:layout_alignParentTop="true">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/coffee"
+                    android:scaleType="centerInside"
+                    app:tint="@color/onSurfaceVariant"
+                    android:layout_marginEnd="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/onSurfaceVariant"
+                    android:text="Coffee" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_toEndOf="@+id/coffee"
+                android:background="@drawable/bg_primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/business"
+                    app:tint="@color/onPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Business"
+                    android:textColor="@color/onPrimary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hobbies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/business"
+                android:layout_margin="4dp"
+                android:background="@drawable/bg_primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hobbies"
+                    app:tint="@color/onPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hobbies"
+                    android:textColor="@color/onPrimary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/friendship"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_surface_variant"
+                android:layout_alignParentStart="true"
+                android:layout_margin="4dp"
+                android:layout_below="@id/coffee">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/friendship"
+                    android:scaleType="centerInside"
+                    app:tint="@color/onSurfaceVariant"
+                    android:layout_marginEnd="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/onSurfaceVariant"
+                    android:text="Friendship" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/business"
+                android:layout_margin="4dp"
+                android:layout_toEndOf="@+id/friendship"
+                android:background="@drawable/bg_surface_variant"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/movies"
+                    app:tint="@color/onSurfaceVariant" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Movies"
+                    android:textColor="@color/onSurfaceVariant"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dinning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/movies"
+                android:layout_below="@id/hobbies"
+                android:background="@drawable/bg_primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:layout_margin="4dp"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/dinning"
+                    app:tint="@color/onPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dinning"
+                    android:textColor="@color/onPrimary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_surface_variant"
+                android:layout_alignParentStart="true"
+                android:layout_margin="4dp"
+                android:layout_below="@id/friendship">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/dating"
+                    android:scaleType="centerInside"
+                    app:tint="@color/onSurfaceVariant"
+                    android:layout_marginEnd="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/onSurfaceVariant"
+                    android:text="Dating" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Matrimony"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/movies"
+                android:layout_margin="4dp"
+                android:layout_toEndOf="@+id/dating"
+                android:background="@drawable/bg_primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/matrimony"
+                    app:tint="@color/onPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Matrimony"
+                    android:textColor="@color/onPrimary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/refine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/explore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/refine_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/refine"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refine"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/explore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:onClick="explore"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/network"
+            app:layout_constraintStart_toEndOf="@id/refine"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/explore_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/explore"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/explore_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/network"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/chat"
+            app:layout_constraintStart_toEndOf="@id/explore"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/network_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/network"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/network_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/contacts"
+            app:layout_constraintStart_toEndOf="@id/network"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/chat_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/chat"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/chat_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chats"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contacts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/chat"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/contacts_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/contacts"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/contacts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contacts"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

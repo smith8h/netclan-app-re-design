@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+buildCache {
+    local {
+        directory = new File("$rootDir/buid-cache").toPath()
+    }
+}
+
+rootProject.name = "NetClan ReDesign"
+include ':app'

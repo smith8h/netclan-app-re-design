@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--    these colors extracted from material 3 tool https://m3.material.io/theme-builder#/custom
+     the main color used by NetClan is named @seed in this colors palate -->
+
+    <color name="seed">#0e2e43</color>
+    <color name="primary">#006494</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryContainer">#CBE6FF</color>
+    <color name="onPrimaryContainer">#001E30</color>
+    <color name="secondary">#50606F</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="secondaryContainer">#D3E4F6</color>
+    <color name="onSecondaryContainer">#0C1D29</color>
+    <color name="tertiary">#65587B</color>
+    <color name="onTertiary">#FFFFFF</color>
+    <color name="tertiaryContainer">#EBDCFF</color>
+    <color name="onTertiaryContainer">#211634</color>
+    <color name="error">#BA1A1A</color>
+    <color name="errorContainer">#FFDAD6</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="onErrorContainer">#410002</color>
+    <color name="background">#FCFCFF</color>
+    <color name="onBackground">#1A1C1E</color>
+    <color name="surface">#FCFCFF</color>
+    <color name="onSurface">#1A1C1E</color>
+    <color name="surfaceVariant">#DDE3EA</color>
+    <color name="onSurfaceVariant">#41474D</color>
+    <color name="outline">#72787E</color>
+    <color name="inverseOnSurface">#F0F0F3</color>
+    <color name="inverseSurface">#2E3133</color>
+    <color name="inversePrimary">#8ECDFF</color>
+    <color name="shadow">#000000</color>
+    <color name="surfaceTint">#006494</color>
+    <color name="outlineVariant">#C1C7CE</color>
+    <color name="scrim">#000000</color>
+</resources>
